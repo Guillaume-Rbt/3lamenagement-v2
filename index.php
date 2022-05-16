@@ -245,7 +245,7 @@ require('elements/header.php'); ?>
 
 <?php
 
-/* use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 require 'PHPMailer/src/PHPMailer.php';
@@ -266,20 +266,20 @@ $decode = json_decode(file_get_contents($api_url), true);
 if(isset($_POST['nom']) and isset($_POST['email']) and $decode['success'] == true and isset($_POST['rgpd1']))
 {
     $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
-$mail->Host = 'mail.dspreseau.fr'; // Spécifier le serveur SMTP
+$mail->Host = 'cloud03.netizis.fr'; // Spécifier le serveur SMTP
 $mail->SMTPAuth = true; // Activer authentication SMTP
-$mail->Username = 'contact@reparationdejantes.fr'; // Votre adresse email d'envoi
-$mail->Password = 'Hub994quo551'; // Le mot de passe de cette adresse email
+$mail->Username = 'contact@3lamenagement.fr'; // Votre adresse email d'envoi
+$mail->Password = 'n2^Ci07e'; // Le mot de passe de cette adresse email
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Accepter SSL
-$mail->Port = 465;
-$mail->setFrom('contact@reparationdejantes.fr', 'Réparation de Jantes'); // Personnaliser l'envoyeur
+$mail->Port = 143;
+$mail->setFrom('contact@3lamenagement.fr', '3L aménagement'); // Personnaliser l'envoyeur
 $mail->addAddress($_POST['email'], $_POST['nom']); // Ajouter le destinataire
-$mail->addReplyTo('contact@reparationdejantes.fr', 'Réparation de Jantes'); // L'adresse de réponse
-$mail->addCC('contact@reparationdejantes.fr');
+$mail->addReplyTo('contact@3lamenagement.fr', '3L aménagement'); // L'adresse de réponse
+$mail->addCC('contact@3lamenagement.fr');
 $mail->isHTML(true); // Paramétrer le format des emails en HTML ou non
-$mail->Subject = '[www.reparationdejantes.fr] Formulaire de contact';
-$mail->Body = "Nous avons bien reçu votre demande. Nous allons reprendre contact avec vous très rapidement. En attendant, vous pouvez nous envoyer des photos de vos jantes, en répondant à ce message, afin de pouvoir établir un devis précis.<br/>A très bientôt dans notre centre RJB !<br/><br/><hr/><br/><strong>Nom : </strong>".$_POST['nom']."<br/><strong>Téléphone : </strong>".$_POST['telephone']."<br/><strong>Email : </strong>".$_POST['email']."<br/><strong>Message : </strong>".$_POST['message']."<br/><strong>RGPD1 : </strong>".$_POST['rgpd1'];
-$mail->AltBody = "Nous avons bien reçu votre demande. Nous allons reprendre contact avec vous très rapidement. En attendant, vous pouvez nous envoyer des photos de vos jantes, en répondant à ce message, afin de pouvoir établir un devis précis. A très bientôt dans notre centre RJB ! Nom : ".$_POST['nom']." Téléphone :  ".$_POST['telephone']." Email : ".$_POST['email']."Message : ".$_POST['message']." RGPD1 : ".$_POST['rgpd1'];
+$mail->Subject = '[3L aménagement] Formulaire de contact';
+
+$mail->AltBody = "Nous avons bien reçu votre demande. Nous allons reprendre contact avec vous très rapidement. A très bientôt ! Nom : ".$_POST['nom']." Téléphone :  ".$_POST['telephone']." Email : ".$_POST['email']."Message : ".$_POST['message']." RGPD1 : ".$_POST['rgpd1'];
 
 if(!$mail->send()) {
 echo "<p style='padding:20px;'><strong style='color:#6dbcdb;'>Erreur, message non envoyé.</p>";
@@ -289,7 +289,7 @@ echo "<p style='padding:20px;'><strong style='color:#6dbcdb;'>Le message a bien 
 }
 }
 else {
-} */
+}
 ?>
 
 
