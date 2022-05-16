@@ -26,7 +26,7 @@ body {
     background: $background;
     background-image: url("../images/feuille.svg");
     background-size: 80% auto;
-    background-position: -10px 0px;
+    background-position: -87% -243px;
     background-attachment: fixed;
     background-repeat: no-repeat;
 
@@ -408,6 +408,7 @@ ul {
             width: 40%;
             position: relative;
             z-index: 900;
+            color: $background;
 
             & h2 {
                 width: 100%;
@@ -437,6 +438,7 @@ ul {
                 width: 100%;
                 position: relative;
                 z-index: 99;
+                cursor:pointer;
             }
         }
 
@@ -550,6 +552,7 @@ ul {
                     width: 100%;
                     position: relative;
                     z-index: 99;
+                    cursor: pointer;
                 }
             }
 
@@ -636,6 +639,10 @@ ul {
     background-repeat: no-repeat;
     width: 100%;
     position: relative;
+
+    & h2 {
+        color: $background;
+    }
    
 
     &::before {
@@ -661,6 +668,16 @@ ul {
             padding: 50px 50px;
             font-weight: bold;
             width: 40%;
+            color: $background;
+
+            & .tel-btn {
+                padding:10px 20px;
+                background-color: #FAFAFA;
+                width: max-content;
+                color: $green;
+                margin: 10px auto;
+                border-radius:30px;
+            }
 
             & img {
                 width:90%;
@@ -681,10 +698,20 @@ ul {
             }
         }
 
-        & form {
+        & .form {
             width:40%;
         }
     }
+}
+
+.g-recaptcha {
+    margin: 10px auto !important;
+display: flex;
+justify-content: center;
+}
+
+#envoyer {
+    cursor: pointer;
 }
 
 
@@ -813,7 +840,7 @@ footer {
             width:100% !important;
         }
 
-        & form {
+        & .form {
             width: 100% !important;
         }
     }

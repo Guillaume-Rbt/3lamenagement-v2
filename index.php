@@ -243,58 +243,6 @@ require('elements/header.php'); ?>
     </div>
 </section>
 
-<?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-$mail = new PHPMailer(True);
-$mail->CharSet = 'UTF-8';
-
-$secret = "6LeYJuAUAAAAAKj6cuN2mn_gotFBtlHP05bEJ3Sr";
-$response = $_POST['g-recaptcha-response'];
-$remoteip = $_SERVER['REMOTE_ADDR'];
-$api_url = "https://www.google.com/recaptcha/api/siteverify?secret=" 
-. $secret
-. "&response=" . $response
-. "&remoteip=" . $remoteip ;
-
-$decode = json_decode(file_get_contents($api_url), true);
-
-if(isset($_POST['nom']) and isset($_POST['email']) and $decode['success'] == true and isset($_POST['rgpd1']))
-{
-    $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
-$mail->Host = 'cloud03.netizis.fr'; // Spécifier le serveur SMTP
-$mail->SMTPAuth = true; // Activer authentication SMTP
-$mail->Username = 'contact@3lamenagement.fr'; // Votre adresse email d'envoi
-$mail->Password = 'n2^Ci07e'; // Le mot de passe de cette adresse email
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Accepter SSL
-$mail->Port = 143;
-$mail->setFrom('contact@3lamenagement.fr', '3L aménagement'); // Personnaliser l'envoyeur
-$mail->addAddress($_POST['email'], $_POST['nom']); // Ajouter le destinataire
-$mail->addReplyTo('contact@3lamenagement.fr', '3L aménagement'); // L'adresse de réponse
-$mail->addCC('contact@3lamenagement.fr');
-$mail->isHTML(true); // Paramétrer le format des emails en HTML ou non
-$mail->Subject = '[3L aménagement] Formulaire de contact';
-
-$mail->AltBody = "Nous avons bien reçu votre demande. Nous allons reprendre contact avec vous très rapidement. A très bientôt ! Nom : ".$_POST['nom']." Téléphone :  ".$_POST['telephone']." Email : ".$_POST['email']."Message : ".$_POST['message']." RGPD1 : ".$_POST['rgpd1'];
-
-if(!$mail->send()) {
-echo "<p style='padding:20px;'><strong style='color:#6dbcdb;'>Erreur, message non envoyé.</p>";
-echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-echo "<p style='padding:20px;'><strong style='color:#6dbcdb;'>Le message a bien été envoyé !</p>";
-}
-}
-else {
-}
-?>
-
-
-
-
 <section class="contact" id="contact">
 
 
@@ -303,24 +251,80 @@ else {
         <div class="text_contact">
             <img src="assets/images/camion.png">
             <p>Je suis à votre service pour vous rencontrer et échanger sur votre projet. J’interviens sur les communes du bassin d’Arcachon </br>dont Gujan-Mestras, Le Teich, La Teste-de-Buch, Cazaux, Arcachon, Mios, Biganos, Audenge, Lanton…</p>
-            <p><span class="iconify" data-icon="akar-icons:phone"></span> 06 75 83 20 83</p>
+            <p class="tel-btn"><span class="iconify" data-icon="akar-icons:phone"></span> 06 75 83 20 83</p>
             <p><span class="iconify" data-icon="ant-design:mail-outlined"></span>3lamenagement[@]gmail.com</p>
         </div>
+        <div class="form">
 
-        <form>
-            <div class="form-group"><input type="text" placeholder="Nom Prénom" id="nom" name="nom" class="form-control" /></div>
-            <div class="form-group"><input type="email" placeholder="Email" id="email" class="form-control" name="email" /></div>
-            <div class="form-group"><input type="text" placeholder="Téléphone" class="form-control" id="telephone" name="telephone" /></div>
-            <div class="form-group"><textarea id="message" class="form-control" name="message" tabindex="6" cols="30" rows="7" placeholder="Message"></textarea></div>
-            <div class="checkbox">
-                <input type="checkbox" id="rgpd1" name="rgpd1" value="J'ai + de 15 ans ou le consentement de mon responsable légal">
-                <label for="rgpd1"> * J'ai plus de 15 ans ou j'ai le consentement de mon responsable légal pour transmettre des données personnelles via ce formulaire</label>
-            </div>
-            <div class="g-recaptcha" data-sitekey="6LeYJuAUAAAAAM3JtRlUCd1c-w-aP0wmmku_unm-"></div>
-            <div style="text-align:center;"><input id="envoyer" type="submit" name="envoi" value="Envoyer" class="form-control" /></div>
-        </form>
+
+
+            <?php
+
+            use PHPMailer\PHPMailer\PHPMailer;
+            use PHPMailer\PHPMailer\SMTP;
+
+            require 'PHPMailer/src/PHPMailer.php';
+            require 'PHPMailer/src/SMTP.php';
+            $mail = new PHPMailer(True);
+            $mail->CharSet = 'UTF-8';
+
+            $secret = "6Ld8DfMfAAAAAD7HqCzRkAJ0CBNwZMvJncYBbYR1";
+            $response = $_POST['g-recaptcha-response'];
+            $remoteip = $_SERVER['REMOTE_ADDR'];
+            $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+                . $secret
+                . "&response=" . $response
+                . "&remoteip=" . $remoteip;
+
+            $decode = json_decode(file_get_contents($api_url), true);
+
+            if (isset($_POST['nom']) and isset($_POST['email']) and $decode['success'] == true and isset($_POST['rgpd1'])) {
+                $mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+                $mail->Host = 'cloud03.netizis.fr'; // Spécifier le serveur SMTP
+                $mail->SMTPAuth = true; // Activer authentication SMTP
+                $mail->Username = 'contact@3lamenagement.fr'; // Votre adresse email d'envoi
+                $mail->Password = 'n2^Ci07e'; // Le mot de passe de cette adresse email
+                $mail->SMTPSecure = 'tls'; // Accepter SSL
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                $mail->Port = 587;
+                $mail->setFrom('contact@3lamenagement.fr', '3L aménagement'); // Personnaliser l'envoyeur
+                $mail->addAddress($_POST['email'], $_POST['nom']); // Ajouter le destinataire
+                $mail->addReplyTo('contact@3lamenagement.fr', '3L aménagement'); // L'adresse de réponse
+                $mail->addCC('contact@3lamenagement.fr');
+                $mail->isHTML(true); // Paramétrer le format des emails en HTML ou non
+                $mail->Subject = '[www.3lamenagement.fr] Formulaire de contact';
+                $mail->Body = "Nous avons bien reçu votre demande. Nous allons reprendre contact avec vous très rapidement. A très bientôt ! <br/><br/><hr/><br/><strong>Nom : </strong>" . $_POST['nom'] . "<br/><strong>Téléphone : </strong>" . $_POST['telephone'] . "<br/><strong>Email : </strong>" . $_POST['email'] . "<br/><strong>Message : </strong>" . $_POST['message'] . "<br/><strong>RGPD1 : </strong>" . $_POST['rgpd1'];
+                $mail->AltBody = "Nous avons bien reçu votre demande. Nous allons reprendre contact avec vous très rapidement. A très bientôt ! Nom : " . $_POST['nom'] . " Téléphone :  " . $_POST['telephone'] . " Email : " . $_POST['email'] . "Message : " . $_POST['message'] . " RGPD1 : " . $_POST['rgpd1'];
+
+                if (!$mail->send()) {
+                    echo "<p style='padding:20px;'><strong style='color:#FAFAFA;'>Erreur, message non envoyé.</p>";
+                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                } else {
+                    echo "<p style='padding:20px;'><strong style='color:#FAFAFA;'>Le message a bien été envoyé !</p>";
+                }
+            } else {
+            }
+            ?>
+            <form method="post" action="index.php#contact" enctype="multipart/form-data">
+                <div class="form-group"><input type="text" placeholder="Nom Prénom" id="nom" name="nom" class="form-control" /></div>
+                <div class="form-group"><input type="email" placeholder="Email" id="email" class="form-control" name="email" /></div>
+                <div class="form-group"><input type="text" placeholder="Téléphone" class="form-control" id="telephone" name="telephone" /></div>
+                <div class="form-group"><textarea id="message" class="form-control" name="message" tabindex="6" cols="30" rows="7" placeholder="Message"></textarea></div>
+                <div class="checkbox">
+                    <input type="checkbox" id="rgpd1" name="rgpd1" value="J'ai + de 15 ans ou le consentement de mon responsable légal">
+                    <label style="color:#fafafa" for="rgpd1"> * J'ai plus de 15 ans ou j'ai le consentement de mon responsable légal pour transmettre des données personnelles via ce formulaire</label>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6Ld8DfMfAAAAAGR6XpzGhb056E1yOYiiXiTuGhN-"></div>
+                <div style="text-align:center;"><input id="envoyer" type="submit" name="envoi" value="Envoyer" class="form-control" /></div>
+            </form>
+        </div>
     </div>
-
 </section>
 
 <?php require('elements/footer.php'); ?>
