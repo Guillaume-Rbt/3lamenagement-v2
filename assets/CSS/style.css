@@ -30,9 +30,6 @@ body {
   font-family: "Inter", sans-serif;
   padding-bottom: 30px;
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   margin-bottom: 25px;
   text-transform: uppercase;
 }
@@ -617,8 +614,7 @@ footer {
   align-items: center;
 }
 footer .logoFooter {
-  width: 350px;
-  min-width: 300px;
+  width: 310px;
 }
 footer .adresse {
   display: flex;
@@ -656,7 +652,6 @@ footer .adresse p {
   .icon_menu {
     visibility: visible !important;
   }
-
   .nav_menu {
     flex-direction: column;
     align-items: center;
@@ -668,12 +663,10 @@ footer .adresse p {
     opacity: 0;
     transition: all 0.3s;
   }
-
   .with_menu .nav_menu {
     visibility: visible;
     opacity: 1;
   }
-
   .contact {
     background-position: 50% 98%;
     -webkit-animation: none;
@@ -687,7 +680,6 @@ footer .adresse p {
 .content_presentation, .contact_content {
     justify-content: center !important;
   }
-
   .text_presentation {
     margin: 20px 0;
     width: 100% !important;
@@ -695,33 +687,26 @@ footer .adresse p {
   .text_presentation::before {
     visibility: hidden;
   }
-
   .text_amenagementExt {
     width: 100% !important;
   }
-
   .gallery {
     width: 100% !important;
   }
-
   .text_amenagementInt {
     width: 100% !important;
   }
-
   .slider_container {
     width: 100% !important;
     margin-bottom: 30px;
   }
-
   .text_entretien {
     width: 100% !important;
     margin-bottom: 30px;
   }
-
   .img_entretien {
     width: 100% !important;
   }
-
   .contact_content {
     flex-direction: column;
     padding: 15px;

@@ -38,7 +38,6 @@ body {
     font-family: 'Inter', sans-serif;
     padding-bottom: 30px;
     position: relative;
-    width: max-content;
     margin-bottom: 25px;
     text-transform: uppercase;
 
@@ -724,8 +723,7 @@ footer {
     align-items: center;
 
     & .logoFooter {
-        width: 350px;
-        min-width: 300px;
+        width: 310px;
     }
 
     & .adresse {
